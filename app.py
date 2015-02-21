@@ -11,6 +11,8 @@ uAchieve! """
 	4. test to see if other users can see
 """
 
+# for heroku
+from os import environ
 
 from flask import Flask, render_template, flash, redirect, request
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -22,9 +24,14 @@ app = Flask(__name__)
 WTF_CSRF_ENABLED = True
 app.secret_key='u_can_do_this'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['HEROKU_POSTGRESQL_GOLD_URL']
-db = SQLAlchemy(app)
-SQLALCHEMY_DATABASE_URI = 'HEROKU_POSTGRESQL_GOLD_URL'
+try:
+	app.config['SQLALCHEMY_DATABASE_URI'] = environ['HEROKU_POSTGRESQL_GOLD_URL']
+	db = SQLAlchemy(app)
+	SQLALCHEMY_DATABASE_URI = 'HEROKU_POSTGRESQL_GOLD_URL'
+except KeyError:
+	app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db_repo/info.db'
+	db = SQLAlchemy(app)
+	SQLALCHEMY_DATABASE_URI = 'sqlite:///db_repo/info.db'
 
 # login manager
 login_manager = LoginManager()
