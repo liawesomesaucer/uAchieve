@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Header -->
+<head>
+	<title>{{ title }} | uAchieve</title>
+	<link rel="stylesheet" href="../static/stylesheet.css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<link rel="shortcut icon" href="/static/icon/favicon.ico" />
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+<div id="navigation">
+	<ul>
+		<a href="/home" id="hrefhome">Home</a>
+		<a href="/newtask" id="hrefintro" >New Task</a>
+		<a href="/settings" id="hrefabout" >Settings</a>
+		<a href="/social" id="hreflinks" >Social</a>
+		<a href="/logout" id="logout" >Logout</a>
+	</ul>
+</div>
+
+<br>
+
+<!-- Main Content -->
+{% block content %}{% endblock %}
+
+
+<!-- Footer -->
+<div class="footer">
+	<p style="font-size:14px;">by <a href="https://liawesomesaucer.github.io/home" style="margin:0px; padding:0px; color:#000;">liawesomesaucer</a> | built with Python-Flask</p>
+</div>
+</body>
+
+<script>
+	
+	// hide the navigation bar by default
+	// $( '#navigation' ).hide();
+
+</script>
+
+</html>
