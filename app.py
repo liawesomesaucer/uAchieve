@@ -8,7 +8,8 @@ uAchieve! """
 	1. add a place for past tasks
 	2. create task removal
 	3. differentiate tasks between users
-	4. test to see if other users can see"""
+	4. test to see if other users can see
+"""
 
 
 from flask import Flask, render_template, flash, redirect, request
@@ -129,9 +130,42 @@ def home():
 @app.route('/firsttask', methods=["GET", "POST"])
 @login_required
 def firsttask():
+	
+	form = NewTaskForm()
+
+	if request.method == 'POST':
+
+		task = Task(form.name.data,
+					form.description.data,
+					form.deadline.data,
+					form.private.data,
+
+					# we use the current user
+					# I need a better way to reference this
+					current_user)
+
+		print('this thing just in')
+		print(task)
+
+		# add task and references to db
+		db.session.add(task)
+		db.session.commit()
+
+		# FOR SOME REASON THE COMMENTED STUFF DOESNT WORK
+		# if form.validate_on_submit():
+		# 	print('do i get here3')
+		# 	print(task)
+
+		# 	return redirect('/home')
+
+		print(current_user.show_tasks())
+
+		return redirect('/home')
 
 	return render_template('firsttask.html',
-							title='Welcome!')
+							title='Welcome!',
+							form=form)
+
 
 
 @app.route('/newtask', methods=["GET", "POST"])
