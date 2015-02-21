@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!-- the description block is for first time users, intended
+	to guide them through the task creation process -->
+{% block description %}{% endblock %}
+
+<div class="page">
+	<h1>New Task</h1>
+
+
+	<form method=post>
+
+	<!-- Hidden tag is needed for wtforms validation! -->
+	{{ form.hidden_tag() }}
+
+	<h2>start something amazing</h2>
+
+    <!-- Registration Field -->
+	{{ form.name(size=32, placeholder="name") }}
+
+    {% for error in form.name.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+
+	{{ form.description(size=32, placeholder="description") }}
+
+	{% for error in form.description.errors %}
+	<span style="color:red;">[{{ error }}]</span>
+	{% endfor %}
+
+	{{ form.deadline(size=100, placeholder="deadline") }}
+
+    {% for error in form.deadline.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+
+	<p style="text-align:center">private?</p>{{ form.private(placeholder="private") }}
+
+	{% for error in form.private.errors %}
+	<span style="color:red;">[{{ error }}]</span>
+	{% endfor %}
+
+	<input type="submit" class="submit" name="submit" value="create">
+	</form>
+</div>
+
+
+
+
+
+
+{% endblock %}
