@@ -22,9 +22,9 @@ app = Flask(__name__)
 WTF_CSRF_ENABLED = True
 app.secret_key='u_can_do_this'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db_repo/info.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['HEROKU_POSTGRESQL_GOLD_URL']
 db = SQLAlchemy(app)
-SQLALCHEMY_DATABASE_URI = 'sqlite:///db_repo/info.db'
+SQLALCHEMY_DATABASE_URI = 'HEROKU_POSTGRESQL_GOLD_URL'
 
 # login manager
 login_manager = LoginManager()
@@ -130,7 +130,7 @@ def home():
 @app.route('/firsttask', methods=["GET", "POST"])
 @login_required
 def firsttask():
-	
+
 	form = NewTaskForm()
 
 	if request.method == 'POST':
