@@ -24,10 +24,13 @@ app = Flask(__name__)
 WTF_CSRF_ENABLED = True
 app.secret_key='u_can_do_this'
 
+# IF it's heroku, try will work
 try:
 	app.config['SQLALCHEMY_DATABASE_URI'] = environ['HEROKU_POSTGRESQL_GOLD_URL']
 	db = SQLAlchemy(app)
-	SQLALCHEMY_DATABASE_URI = 'HEROKU_POSTGRESQL_GOLD_URL'
+	SQLALCHEMY_DATABASE_URI = 'HEROKU_POSTGRESQL_GOLD_URL'\
+
+# Otherwise use SQLite locally
 except KeyError:
 	app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db_repo/info.db'
 	db = SQLAlchemy(app)
