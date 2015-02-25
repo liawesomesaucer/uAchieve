@@ -2,6 +2,7 @@
 
 {% block content %}
 
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 <!-- Login popup box (hidden by default) -->
 <div class="popup_signin"style="">
@@ -147,6 +148,7 @@
 	// hide the navigation and signin boxes
 	$( '.popup_signin' ).hide();
 	$( '.popup_register' ).hide();
+	$( '#navigation' ).hide();
 
 	// user clicks sign in; shows the sign in box
 	function signin() {
@@ -155,7 +157,7 @@
 	}
 
 	// hides the sign in box
-	function hide_signin() {
+	function hide_signin() { 
 		$( '.body' ).fadeTo(400, 1);
 		$( '.popup_signin' ).fadeOut(400);
 	}
