@@ -23,6 +23,7 @@ decorator==3.4.0
 defusedxml==0.4.1
 dj-database-url==0.3.0
 flipflop==1.0
+gunicorn==19.1.1
 guess-language==0.2
 itsdangerous==0.24
 mongo==0.2.0
