@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath app app.wsgi
+web: gunicorn runp-heroku-app
